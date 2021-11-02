@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class BinarySearchTree<T extends Comparable<? super T> > {
+public class BinarySearchTree<T extends Comparable<? super T>> {
 
     private BinaryNode<T> root;
 
-    public BinarySearchTree() { }
+    public BinarySearchTree() {
+    }
 
     // TODO: initialisation
     public BinarySearchTree(T item) {
@@ -45,7 +44,7 @@ public class BinarySearchTree<T extends Comparable<? super T> > {
     // O(n)
     public String toStringInOrder() {
         List<BinaryNode<T>> result = getItemsInOrder();
-        List <T> dataList = new ArrayList<>();
+        List<T> dataList = new ArrayList<>();
         for (BinaryNode<T> node : result) {
             dataList.add(node.getData());
         }

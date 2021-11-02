@@ -1,18 +1,13 @@
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import static java.util.Comparator.*;
-
-public class BinaryNode<T extends Comparable<? super T> > {
-    private T data;
+public class BinaryNode<T extends Comparable<? super T>> {
+    private final T data;
     private BinaryNode<T> right;
     private BinaryNode<T> left;
 
     // TODO: initialisation
     // O(1)
-    public BinaryNode(T data)
-    {
+    public BinaryNode(T data) {
         this.data = data;
         this.right = null;
         this.left = null;
@@ -20,28 +15,23 @@ public class BinaryNode<T extends Comparable<? super T> > {
 
     // TODO: on retourne la donnee voulue
     // O(1)
-    public T getData()
-    {
+    public T getData() {
         return this.data;
     }
 
     // TODO: on ajoute une nouvelle donnee au bon endroit
     // O(log(n))
-    public void insert(T item)
-    {
+    public void insert(T item) {
         if (this.getData().compareTo(item) < 0) {
             if (this.right == null) {
                 this.right = new BinaryNode<>(item);
-            }
-            else {
+            } else {
                 this.right.insert(item);
             }
-        }
-        else {
+        } else {
             if (this.left == null) {
                 this.left = new BinaryNode<>(item);
-            }
-            else {
+            } else {
                 this.left.insert(item);
             }
         }
@@ -49,28 +39,27 @@ public class BinaryNode<T extends Comparable<? super T> > {
 
     // TODO: est-ce que l'item fais partie du noeuds courant
     // O(log(n))
-    public boolean contains(T item)
-    {
-        int comp = item.compareTo(this.data);
-        if(comp  == 0) return true;
-        if(comp < 0 && left != null && left.contains(item)) return true;
-        if(comp > 0 && right != null && right.contains(item)) return true;
-        return false;
+    public boolean contains(T item) {
+        int comparator = item.compareTo(this.data);
+        if (comparator == 0) {
+            return true;
+        }
+        if (comparator < 0 && this.left != null && this.left.contains(item)) {
+            return true;
+        }
+        return comparator > 0 && this.right != null && this.right.contains(item);
     }
 
     // TODO: on retourne la maximale de l'arbre
     // O(n)
     public int getHeight() {
-        if( this.right == null && this.left == null ) {
+        if (this.right == null && this.left == null) {
             return 0;
-        }
-        else if (this.right != null && this.left != null) {
+        } else if (this.right != null && this.left != null) {
             return 1 + Math.max(left.getHeight(), right.getHeight());
-        }
-        else if (this.right == null) {
+        } else if (this.right == null) {
             return 1 + left.getHeight();
-        }
-        else  {
+        } else {
             return 1 + right.getHeight();
         }
     }

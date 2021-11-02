@@ -1,13 +1,8 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class Interview {
 
 
     //TODO: completer
-    public static TreeNode solution (TreeNode t1, TreeNode t2) {
+    public static TreeNode solution(TreeNode t1, TreeNode t2) {
 
         if (t1 == null)
             return t2;
